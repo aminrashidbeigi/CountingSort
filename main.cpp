@@ -1,4 +1,6 @@
 #include <iostream>
+#include <thread>
+#include <future>
 
 using namespace std;
 
@@ -11,7 +13,7 @@ void print(int a[], int sz) {
     cout << endl;
 }
 
-int* CountingSort(int arr[], int sz) {
+int* CountingSort(int arr[], int sz, int num) {
 
     int* sortedArray = new int [range];
     for (int i = 0; i < sz; i++) {
@@ -64,8 +66,12 @@ int main()
     cout << "\n" ;
 
 
-    int* leftSortedArray = CountingSort(leftArray, leftCount);
-    int* rightSortedArray = CountingSort(rightArray, rightCount);
+    auto t1 = async(CountingSort, leftArray, leftCount, 1);
+    auto t2 = async(CountingSort, rightArray, rightCount, 2);
+
+    int* leftSortedArray = t1.get();
+    int* rightSortedArray = t2.get();
+
 
     int* sortedArray = new int [range];
     for (int l = 0; l < range; l++) {
@@ -81,5 +87,7 @@ int main()
             }
         }
     }
+
+    cout << "\n" ;
 //    print(a,sz);
 }
