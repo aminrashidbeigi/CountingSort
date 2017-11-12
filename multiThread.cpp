@@ -1,3 +1,7 @@
+//
+// Created by amin on 11/12/17.
+//
+
 #include <iostream>
 #include <thread>
 #include <time.h>
@@ -8,7 +12,7 @@ using namespace std;
 
 int range;
 
-int* CountingSort(int arr[], int sizeOfArray, int* sortedArray) {
+void CountingSort(int arr[], int sizeOfArray, int* sortedArray) {
 
     for (int i = 0; i < range; i++) {
         sortedArray[i] = 0;
@@ -60,8 +64,6 @@ int main()
 
     thread t1 (CountingSort, leftArray, leftCount, leftSortedArray);
     thread t2 (CountingSort, rightArray, rightCount, rightSortedArray);
-
-//    cout <<"oooooomad inja" << endl;
 
     t1.join();
     t2.join();

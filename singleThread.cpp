@@ -40,7 +40,6 @@ void CountingSort(int arr[]) {
 int main()
 {
     int a[SIZE];
-    const size_t sz = sizeof(a)/sizeof(a[0]);
     int min = INT32_MAX;
     int max = -INT32_MAX;
     clock_t start = clock();
@@ -49,7 +48,7 @@ int main()
         a[m] = rand()%10;
     }
 
-    for (int i = 0; i < sz; i++) {
+    for (int i = 0; i < SIZE; i++) {
         if (min > a[i])
             min = a[i];
         if (max < a[i])
